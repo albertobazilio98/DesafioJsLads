@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Lista de Pessoas</title>
+  </head>
+  <body>
+
+    <div id="app">
+      <p>Nome: </p>
+      <input v-model = "nomeI" id="nome">
+      <p>Sexo: </p>
+      <input type="radio" id="male" value='m' v-model="sexoI">
+      <label for="male"> Masculino </label>
+      <input type="radio" id="female" value='f' v-model="sexoI">
+      <label for="male"> Feminino </label>
+
+      <button @click="add"> Adicionar </button>
+
+      <br>
+
+      <button @click="showM"> Listar Homens </button>
+      <button @click="showF"> Listar Mulheres </button>
+
+      <br>
+
+      <ol v-if="btnM">
+        <div v-for="pessoa in pessoas">
+          <li v-if="pessoa.sexo == 'm'" >{{ pessoa.nome }}</li>
+        </div>
+      </ol>
+
+      <ol v-if="btnF">
+        <div v-for="pessoa in pessoas">
+          <li v-if="pessoa.sexo == 'f'" >{{ pessoa.nome }}</li>
+        </div>
+      </ol>
+
+    </div>
+    <script src="vue.js"></script>
+    <script src="app.js"></script>
+  </body>
+
+</html>
