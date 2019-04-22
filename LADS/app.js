@@ -1,17 +1,13 @@
+
 var app = new Vue({
     el: '#app',
 
     data: {
       nomeI: '',
-      sexoI: {},
-      btnM: false,
-      btnF: false,
-      pessoas: [
-        {
-        nome: "",
-        sexo: ''
-      }
-    ]
+      sexoI: 'm',
+      mostrarHomens: false,
+      mostrarMulheres: false,
+      pessoas: []
     },
     methods: {
       add(){
@@ -20,12 +16,12 @@ var app = new Vue({
         }
       },
       showM(){
-        this.btnM = true;
-        this.btnF = false;
+        this.mostrarHomens = true;
+        this.mostrarMulheres = false;
       },
       showF(){
-          this.btnF = true;
-          this.btnM = false;
+          this.mostrarMulheres = true;
+          this.mostrarHomens = false;
       }
     }
 });

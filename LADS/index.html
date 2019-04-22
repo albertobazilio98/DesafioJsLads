@@ -1,43 +1,62 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
     <meta charset="utf-8">
     <title>Lista de Pessoas</title>
   </head>
   <body>
 
     <div id="app">
-      <p>Nome: </p>
-      <input v-model = "nomeI" id="nome">
-      <p>Sexo: </p>
-      <input type="radio" id="male" value='m' v-model="sexoI">
-      <label for="male"> Masculino </label>
-      <input type="radio" id="female" value='f' v-model="sexoI">
-      <label for="male"> Feminino </label>
 
-      <button @click="add"> Adicionar </button>
+      <v-app>
+        <v-layout align-center justify-center>
+          <v-container grid-list-xl>
+            <div class="text-xs-center">
+              <v-flex xs12 sm6 offset-sm3>
+                <v-text-field v-model = "nomeI" id="nome" label="Nome:" color="indigo"></v-text-field>
+                <v-radio-group row v-model="sexoI" label="Sexo: " color="indigo">
+                  <v-radio label="Masculino" id="male" value='m'></v-radio>
+                  <v-radio label="Feminino" id="female" value='f'></v-radio>
+                </v-radio-group>
+                <v-btn outline color="indigo" @click="add"> Adicionar </v-btn>
+              </v-flex>
 
-      <br>
 
-      <button @click="showM"> Listar Homens </button>
-      <button @click="showF"> Listar Mulheres </button>
 
-      <br>
+              <v-flex xs12 sm6 offset-sm3>
+                <v-btn flat small color="indigo" @click="showM"> Listar Homens </v-btn>
+                <v-btn flat small color="indigo" @click="showF"> Listar Mulheres </v-btn>
+              </v-flex>
 
-      <ol v-if="btnM">
-        <div v-for="pessoa in pessoas">
-          <li v-if="pessoa.sexo == 'm'" >{{ pessoa.nome }}</li>
-        </div>
-      </ol>
+              <v-flex xs12 sm6 offset-sm3>
+                <v-card v-if="mostrarHomens" v-for="pessoa in pessoas">
+                  <div v-if="pessoa.sexo == 'm'">
+                    <v-list>
+                      <v-list-tile>{{ pessoa.nome }}</v-list-tile>
+                    </v-list>
+                  </div>
+                </v-card>
+              </v-flex>
 
-      <ol v-if="btnF">
-        <div v-for="pessoa in pessoas">
-          <li v-if="pessoa.sexo == 'f'" >{{ pessoa.nome }}</li>
-        </div>
-      </ol>
-
+              <v-flex xs12 sm6 offset-sm3>
+                <v-card v-if="mostrarMulheres" v-for="pessoa in pessoas">
+                  <div v-if="pessoa.sexo == 'f'">
+                    <v-list>
+                      <v-list-tile>{{ pessoa.nome }}</v-list-tile>
+                    </v-list>
+                  </div>
+                </v-card>
+              </v-flex xs12 sm6 offset-sm3>
+            </div>
+          </v-container>
+        </v-layout>
+      </v-app>
     </div>
-    <script src="vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
     <script src="app.js"></script>
   </body>
 
